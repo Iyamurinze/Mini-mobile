@@ -43,14 +43,6 @@ export default function GroupsScreen() {
 
     return (
         <ThemeAwareView style={styles.container}>
-            <TouchableOpacity
-                style={styles.createButton}
-                onPress={() => router.push('/')}
-            >
-                <Plus size={20} color="#fff" />
-                <Text style={styles.createButtonText}>Create New Group</Text>
-            </TouchableOpacity>
-
             <ScrollView style={styles.groupsList}>
                 {groups.map((group) => (
                     <TouchableOpacity key={group.id} style={[styles.groupCard, { backgroundColor: colors.surface }]}>

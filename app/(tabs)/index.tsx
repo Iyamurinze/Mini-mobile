@@ -8,16 +8,17 @@ export default function HomeScreen() {
     const { isDark } = useTheme();
     const colors = {
         text: isDark ? '#ffffff' : '#1a1a1a',
+        background: isDark ? '#1a1a1a' : '#ffffff',
         textSecondary: isDark ? '#9ca3af' : '#6b7280',
         surface: isDark ? '#2a2a2a' : '#ffffff',
         border: isDark ? '#404040' : '#e5e7eb',
     };
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
             <ThemeAwareView style={[styles.header, { backgroundColor: colors.surface }]}>
-                <Text style={[styles.greeting, { color: colors.text }]}>Welcome back, John!</Text>
-                <Text style={[styles.subGreeting, { color: colors.textSecondary }]}>Your tontine overview</Text>
+                <Text style={[styles.greeting, { color: colors.text }]}>Welcome back!</Text>
+                <Text style={[styles.subGreeting, { color: colors.textSecondary }]}>Your MINI overview</Text>
             </ThemeAwareView>
 
             <View style={styles.statsContainer}>
@@ -36,7 +37,7 @@ export default function HomeScreen() {
                     <Text style={[styles.sectionTitle, { color: colors.text }]}>Upcoming Payments</Text>
                     <Link href="/groups" asChild>
                         <TouchableOpacity style={styles.seeAll}>
-                            <Text style={styles.seeAllText}>See All</Text>
+                            <Text style={[styles.seeAllText, { color: '#6366f1' }]}>See All</Text>
                             <ArrowRight size={16} color="#6366f1" />
                         </TouchableOpacity>
                     </Link>
@@ -45,7 +46,7 @@ export default function HomeScreen() {
                 <ThemeAwareView style={[styles.paymentCard, { backgroundColor: colors.surface }]}>
                     <View style={styles.paymentInfo}>
                         <Text style={[styles.paymentGroup, { color: colors.text }]}>Business Growth Group</Text>
-                        <Text style={styles.paymentDue}>Due in 2 days</Text>
+                        <Text style={[styles.paymentDue, { color: '#ef4444' }]}>Due in 2 days</Text>
                     </View>
                     <Text style={[styles.paymentAmount, { color: colors.text }]}>$200</Text>
                 </ThemeAwareView>
@@ -64,7 +65,7 @@ export default function HomeScreen() {
                             <View style={[styles.progressFill, { width: '75%' }]} />
                         </View>
                     </View>
-                    <Text style={styles.goalProgress}>75%</Text>
+                    <Text style={[styles.goalProgress, { color: '#6366f1' }]}>75%</Text>
                 </ThemeAwareView>
             </View>
         </ScrollView>
@@ -74,7 +75,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f9fafb',
     },
     header: {
         padding: 20,
@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
     },
     seeAllText: {
         fontSize: 14,
-        color: '#6366f1',
     },
     paymentCard: {
         padding: 16,
@@ -154,7 +153,6 @@ const styles = StyleSheet.create({
     },
     paymentDue: {
         fontSize: 14,
-        color: '#ef4444',
         marginTop: 2,
     },
     paymentAmount: {
@@ -194,7 +192,6 @@ const styles = StyleSheet.create({
     goalProgress: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#6366f1',
         marginLeft: 12,
     },
 });

@@ -1,7 +1,16 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, useColorScheme } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    Image,
+    ScrollView, // Import ScrollView
+    useColorScheme,
+} from 'react-native';
 import { router } from 'expo-router';
-import { Moon, Sun, Laptop } from 'lucide-react-native';
+import { Moon, Sun } from 'lucide-react-native';
 import { useTheme } from '@/constants/ThemeContext';
 
 export default function LandingScreen() {
@@ -45,98 +54,90 @@ export default function LandingScreen() {
     };
 
     return (
-        <View style={[styles.container, dynamicStyles.container]}>
-            <View style={styles.header}>
-                <Image
-                    source={{ uri: 'https://images.unsplash.com/photo-1554774853-719586f82d77?q=80&w=2940&auto=format&fit=crop' }}
-                    style={styles.backgroundImage}
-                />
-                <View style={styles.overlay} />
-                <Text style={[styles.title, dynamicStyles.text]}>Tontine</Text>
-                <Text style={[styles.subtitle, dynamicStyles.text]}>
-                    Empower your community through collective savings
-                </Text>
-            </View>
-
-            <View style={styles.themeSelector}>
-                <TouchableOpacity
-                    style={[
-                        styles.themeButton,
-                        theme === 'light' && styles.activeThemeButton,
-                    ]}
-                    onPress={() => setTheme('light')}
-                >
-                    <Sun size={20} color={theme === 'light' ? '#ffffff' : '#6366f1'} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[
-                        styles.themeButton,
-                        theme === 'system' && styles.activeThemeButton,
-                    ]}
-                    onPress={() => setTheme('system')}
-                >
-                    <Laptop size={20} color={theme === 'system' ? '#ffffff' : '#6366f1'} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[
-                        styles.themeButton,
-                        theme === 'dark' && styles.activeThemeButton,
-                    ]}
-                    onPress={() => setTheme('dark')}
-                >
-                    <Moon size={20} color={theme === 'dark' ? '#ffffff' : '#6366f1'} />
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.formContainer}>
-                <Text style={[styles.formTitle, dynamicStyles.text]}>
-                    {isLogin ? 'Welcome Back' : 'Create Account'}
-                </Text>
-
-                <TextInput
-                    style={[styles.input, dynamicStyles.input]}
-                    placeholder="Email"
-                    placeholderTextColor={getThemeStyles('#9ca3af', '#6b7280')}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
-
-                <TextInput
-                    style={[styles.input, dynamicStyles.input]}
-                    placeholder="Password"
-                    placeholderTextColor={getThemeStyles('#9ca3af', '#6b7280')}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                />
-
-                <TouchableOpacity
-                    style={[styles.button, dynamicStyles.button]}
-                    onPress={handleSubmit}
-                >
-                    <Text style={[styles.buttonText, dynamicStyles.buttonText]}>
-                        {isLogin ? 'Sign In' : 'Sign Up'}
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <View style={[styles.container, dynamicStyles.container]}>
+                <View style={styles.header}>
+                    <View style={styles.overlay} />
+                    <Text style={[styles.title, dynamicStyles.text]}>MINI</Text>
+                    <Text style={[styles.subtitle, dynamicStyles.text]}>
+                        Empower your community through collective savings
                     </Text>
-                </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity
-                    style={styles.switchButton}
-                    onPress={() => setIsLogin(!isLogin)}
-                >
-                    <Text style={[styles.switchText, dynamicStyles.text]}>
-                        {isLogin
-                            ? "Don't have an account? Sign Up"
-                            : 'Already have an account? Sign In'}
+                <View style={styles.themeSelector}>
+                    <TouchableOpacity
+                        style={[
+                            styles.themeButton,
+                            theme === 'light' && styles.activeThemeButton,
+                        ]}
+                        onPress={() => setTheme('light')}
+                    >
+                        <Sun size={20} color={theme === 'light' ? '#ffffff' : '#6366f1'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[
+                            styles.themeButton,
+                            theme === 'dark' && styles.activeThemeButton,
+                        ]}
+                        onPress={() => setTheme('dark')}
+                    >
+                        <Moon size={20} color={theme === 'dark' ? '#ffffff' : '#6366f1'} />
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.formContainer}>
+                    <Text style={[styles.formTitle, dynamicStyles.text]}>
+                        {isLogin ? 'Welcome Back' : 'Create Account'}
                     </Text>
-                </TouchableOpacity>
+
+                    <TextInput
+                        style={[styles.input, dynamicStyles.input]}
+                        placeholder="Email"
+                        placeholderTextColor={getThemeStyles('#9ca3af', '#6b7280')}
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
+
+                    <TextInput
+                        style={[styles.input, dynamicStyles.input]}
+                        placeholder="Password"
+                        placeholderTextColor={getThemeStyles('#9ca3af', '#6b7280')}
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                    />
+
+                    <TouchableOpacity
+                        style={[styles.button, dynamicStyles.button]}
+                        onPress={handleSubmit}
+                    >
+                        <Text style={[styles.buttonText, dynamicStyles.buttonText]}>
+                            {isLogin ? 'Sign In' : 'Sign Up'}
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.switchButton}
+                        onPress={() => setIsLogin(!isLogin)}
+                    >
+                        <Text style={[styles.switchText, dynamicStyles.text]}>
+                            {isLogin
+                                ? "Don't have an account? Sign Up"
+                                : 'Already have an account? Sign In'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        flexGrow: 1, // Ensures the content can scroll
+    },
     container: {
         flex: 1,
         backgroundColor: '#ffffff',

@@ -7,6 +7,7 @@ export default function ContributionsScreen() {
     const { isDark } = useTheme();
     const colors = {
         text: isDark ? '#ffffff' : '#1a1a1a',
+        background: isDark ? '#1a1a1a' : '#ffffff',
         textSecondary: isDark ? '#9ca3af' : '#6b7280',
         surface: isDark ? '#2a2a2a' : '#ffffff',
         border: isDark ? '#404040' : '#e5e7eb',
@@ -63,7 +64,7 @@ export default function ContributionsScreen() {
     };
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
             <View style={styles.summary}>
                 <ThemeAwareView style={[styles.summaryCard, { backgroundColor: colors.surface }]}>
                     <Text style={[styles.summaryLabel, { color: colors.textSecondary }]}>Total Contributed</Text>
